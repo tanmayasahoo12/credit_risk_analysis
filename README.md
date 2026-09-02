@@ -1,4 +1,4 @@
-# Credit Risk Underwriting & Strategy Optimization Framework
+# $$\color{#66b2b2}{\text{Credit Risk Underwriting and Portfolio Optimization}}$$
 
 **A Data-Driven Portfolio Risk Mitigation & Capital Preservation Project**
 
@@ -10,7 +10,7 @@
 
 ---
 
-## Table of Contents
+## $$\color{#66b2b2}{\text{Table of Contents}}$$
 * [Overview](#overview)
 * [Key Business Metrics](#key-business-metrics)
 * [Problem Statement](#problem-statement)
@@ -32,15 +32,14 @@
 
 ---
 
-## Overview
+## $$\color{#66b2b2}{\text{Overview}}$$
 
 This project evaluates an empirical, data-driven credit risk underwriting framework designed to optimize loan approval decisions, minimize capital default exposure, and preserve profitable origination volume.
 
 Through the analysis of **32,409 historical loan origination records**, critical risk concentrations were identified within high Debt-to-Income (DTI) segments and lower credit grades. To replace unconstrained lending practices, a **Refined 3-Tier Risk Policy Framework** was engineered and simulated.
 
----
 
-## Key Business Metrics
+### $$\color{#758f7c}{\text{Key Business Metrics}}$$
 
 * **Default Rate Reduction:** Decreased the portfolio default rate by **60.8%**, dropping from **21.87% down to 8.58%** (well below the 20% target ceiling).
 * **Capital Loss Avoidance:** Reduced defaulted principal losses from **$76.93M to $15.77M**, preserving **$61.17 Million in lending capital** (a **79.5% reduction in dollar loss**).
@@ -48,7 +47,7 @@ Through the analysis of **32,409 historical loan origination records**, critical
 
 ---
 
-## Problem Statement
+## $$\color{#66b2b2}{\text{Problem Statement}}$$
 
 Under the baseline unconstrained underwriting model, incoming loan applicants were approved without risk-tier segmenting. This produced elevated default rates exceeding corporate risk boundaries:
 
@@ -58,15 +57,14 @@ Under the baseline unconstrained underwriting model, incoming loan applicants we
 * **Baseline Default Rate:** **21.87%**
 * **Baseline Dollar Loss:** **$76.93 Million** (Capital Loss Rate: 24.75%)
 
----
 
-## Business Goal
+### $$\color{#758f7c}{\text{Business Goal}}$$
 
 Formulate a data-backed underwriting rule set that eliminates high-risk toxic origination while continuing to fund creditworthy borrowers across prime and subprime tiers.
 
 ---
 
-## Dataset Description
+## $$\color{#66b2b2}{\text{Dataset}}$$
 
 The dataset comprises **32,409 credit applicant records** containing demographic, financial, and loan status indicators:
 
@@ -87,7 +85,7 @@ The dataset comprises **32,409 credit applicant records** containing demographic
 
 ---
 
-## Tools & Technical Stack
+## $$\color{#66b2b2}{\text{Tools and Technical Stack}}$$
 
 * **Database Engine:** MySQL 8.0 (Data cleaning, aggregation, window functions, univariate/multivariate query profiling, multi-tier scenario simulation).
 * **Business Intelligence:** Microsoft Power BI Desktop (DAX measures, 2-page executive dashboard).
@@ -95,7 +93,7 @@ The dataset comprises **32,409 credit applicant records** containing demographic
 
 ---
 
-## Project Directory Structure
+## $$\color{#66b2b2}{\text{Project Directory Structure}}$$
 
 ```text
 Credit-Risk-Underwriting-PowerBI/
@@ -119,13 +117,15 @@ Credit-Risk-Underwriting-PowerBI/
     └── page2_policy_impact.png               <-- Page 2 visual screenshot
 ```
 
-## How to Run this Project
+---
+
+## $$\color{#66b2b2}{\text{How to Run this Project}}$$
 
 ### Prerequisites
 * **MySQL Workbench 8.0** or higher
 * **Power BI Desktop** (latest build recommended)
 
-### Execution Steps
+### $$\color{#758f7c}{\text{Execution Steps}}$$
 
 1. **Clone the Repository:**
    ```bash
@@ -140,7 +140,7 @@ Credit-Risk-Underwriting-PowerBI/
 * Launch Power BI Desktop and open `power_bi/Credit_Risk_Dashboard.pbix`.
 * If prompted for data source paths, re-link the dataset to `data/credit_risk_clean.csv`.
 
-## Data Cleaning & Preparation
+## $$\color{#66b2b2}{\text{Data Cleaning and Preparation}}$$
 
 To ensure data integrity and model reliability, systematic data hygiene procedures were executed using MySQL:
 
@@ -155,16 +155,18 @@ To ensure data integrity and model reliability, systematic data hygiene procedur
    * **Employment Length (`person_emp_length`):** A total of **887 missing values** were identified. These applicants were categorized as newly employed entry-level workers and imputed with **0 years** of tenure.
    * **Interest Rate (`loan_int_rate`):** A total of **3,094 missing values** were identified. Rather than dropping these records or applying a global average, missing values were imputed using the category-specific average interest rate of the applicant's corresponding credit risk grade (`loan_grade`).
 
-## Exploratory Data Analysis (MySQL)
+---
+
+## $$\color{#66b2b2}{\text{Exploratory Data Analysis (MySQL)}}$$
 
 Exploratory data analysis was conducted using MySQL to identify underlying patterns, evaluate variable correlations, and isolate specific risk drivers influencing borrower default behavior. Throughout this analysis, an internal **maximum default risk appetite ceiling of 20.0%** was established as the benchmark for credit policy eligibility.
 
-### 1. Univariate Analysis
+### $$\color{#758f7c}{\text{1. Univariate Analysis}}$$
 Univariate profiling was performed across all primary applicant attributes—including loan intent, Debt-to-Income (DTI) ratio, credit risk grade, employment length, homeownership status, interest rate, credit history length, and prior default history (`Y`/`N`).
 
 Each feature was evaluated individually against `loan_status` to determine its standalone correlation with default rates. For continuous numerical variables (such as DTI and interest rates), segmented binning and bucket analysis were executed to detect threshold non-linearities and pinpoint exact structural inflection points ("risk cliffs") where default probability escalated sharply.
 
-### 2. Multivariate Analysis & Policy Tier Formulation
+### $$\color{#758f7c}{\text{2. Multivariate Analysis and Policy Tier Formulation}}$$
 To isolate compound risk drivers, multivariate cross-tabulations were conducted, beginning with an evaluation of credit risk grades against continuous DTI tiers.
 
 * **DTI Threshold Discovery & Tier 1 (Core Prime) Identification:**  
@@ -179,7 +181,9 @@ To isolate compound risk drivers, multivariate cross-tabulations were conducted,
 * **Tier 4 (Toxic Decline):**  
   All remaining loan profiles failing to satisfy the eligibility rules of Tiers 1, 2, or 3 exhibited default rates ranging between 30% and 69%, well in excess of the corporate risk boundary. These applicants were assigned to Tier 4 for automated decline.
 
-## Empirical Findings & Policy Framework
+---
+
+## $$\color{#66b2b2}{\text{Empirical Findings and Policy Framework}}$$
 
 The multi-tier segmentation analysis yielded the following performance distribution across baseline and proposed policy tiers:
 
@@ -194,19 +198,23 @@ The multi-tier segmentation analysis yielded the following performance distribut
 | **Total Under New Policy** | **As per Above** | **25,311** | **$222.06 M** | **2,171** | **8.58%** | **$15.77 M** | **7.10%** |
 | **Tier 4: Toxic Assets (Decline)** | All remaining loan profiles | 7,098 | $88.82 M | 4,917 | 69.27% | $61.17 M | 68.87% |
 
-## Power BI Executive Dashboards
+---
 
-### Page 1: Baseline Risk & Driver Discovery
-![Page 1: Baseline Risk & Driver Discovery](dashboard_images\page1_risk_analysis.png)
+## $$\color{#66b2b2}{\text{Power BI Executive Dashboards}}$$
 
-### Page 2: Proposed 3-Tier Policy & Portfolio Impact
-![Page 2: Proposed 3-Tier Policy & Portfolio Impact](dashboard_images\page2_new_policy_impact.png)
+### $$\color{#758f7c}{\text{Page 1: Baseline Risk and Driver Discovery}}$$
+![Page 1: Baseline Risk & Driver Discovery](./dashboard_images/page1_risk_analysis.png)
 
-## Final Recommendations & Business Impact
+### $$\color{#758f7c}{\text{Page 2: Proposed 3-Tier Policy and Portfolio Impact}}$$
+![Page 2: Proposed 3-Tier Policy & Portfolio Impact](./dashboard_images/page2_new_policy_impact.png)
+
+---
+
+## $$\color{#66b2b2}{\text{Final Recommendations and Business Impact}}$$
 
 Based on the empirical findings and multi-tier policy simulation, the following strategic measures and operational recommendations are proposed:
 
-### Strategic Recommendations
+### $$\color{#758f7c}{\text{Strategic Recommendations}}$$
 
 1. **Deployment of Automated 3-Tier Underwriting Logic**  
    The front-end credit origination engine should immediately integrate the 3-Tier rule matrix. Automated hard stops should be enforced for non-homeowner applicants presenting a DTI ratio greater than 30.0%, effectively eliminating high-risk origination before capital deployment.
@@ -217,9 +225,8 @@ Based on the empirical findings and multi-tier policy simulation, the following 
 3. **Dynamic Pricing Adjustments for Tier 2 and Tier 3 Segmentations**  
    While Tiers 2 and 3 maintain acceptable default frequencies (12.26% and 12.14% respectively), their loss profiles are higher than Tier 1 prime originations (8.40%). Interest rates and risk premiums for Tiers 2 and 3 should be dynamically calibrated to ensure adequate loss-provisioning coverage and risk-adjusted return on capital (RAROC).
 
----
 
-### Modeled Business Impact
+### $$\color{#758f7c}{\text{Modeled Business Impact}}$$
 
 | Financial Metric | Baseline Model | Proposed Policy | Delta |
 | :--- | :---: | :---: | :---: |
@@ -235,7 +242,9 @@ The table above clearly depicts capital loss prevention, structural default rate
 * **Structural Default Rate Reduction:** The portfolio default rate drops by **60.8% relative**, moving from **21.87% down to 8.58%**, bringing institutional credit risk well inside the maximum 20.0% appetite boundary.
 * **Pipeline Preservation:** The policy approves **25,311 out of 32,409 applicants**, retaining **78.10% of origination volume** ($222.06 Million in active capital exposure) and safeguarding ongoing interest revenue streams.
 
-## Author & Contact Details
+---
+
+## $$\color{#66b2b2}{\text{Author and Contact Details}}$$
 
 * **Author:** Tanmaya Kumar Sahoo
 * **Role:** Credit Risk & Data Analyst
